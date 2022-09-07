@@ -6,9 +6,8 @@ public class EmployeePayrollService {
     public enum IOService {
         CONSOLE_IO, FILE_IO
     }
-
-    private final List<EmployeePayrollData> employeePayrollList;
-
+    private List<EmployeePayrollData> employeePayrollList;
+    public EmployeePayrollService() {}
     public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList) {
         this.employeePayrollList = employeePayrollList;
     }
@@ -21,7 +20,7 @@ public class EmployeePayrollService {
         employeePayrollService.writeEmployeePayrollData(IOService.CONSOLE_IO);
     }
 
-    public void readEmployeePayrollData(Scanner scanner) {
+    private void readEmployeePayrollData(Scanner scanner) {
         System.out.println("Enter Employee ID");
         int id = scanner.nextInt();
         System.out.println("Enter Employee Name");
@@ -37,13 +36,21 @@ public class EmployeePayrollService {
         else if (ioService.equals(IOService.FILE_IO))
             new EmployeePayrollFileIOService().writeData(employeePayrollList);
     }
+
     public void printData(IOService ioService) {
         if (ioService.equals(IOService.FILE_IO))
             new EmployeePayrollFileIOService().printData();
     }
-    public int countEntries(IOService ioService) {
+
+    public long countEntries(IOService ioService) {
         if (ioService.equals(IOService.FILE_IO))
             return new EmployeePayrollFileIOService().countEntries();
         return 0;
+    }
+
+    public long readEmployeePayrollData(IOService ioService) {
+        if (ioService.equals(IOService.FILE_IO))
+            this.employeePayrollList = new EmployeePayrollFileIOService().readData();
+        return employeePayrollList.size();
     }
 }
