@@ -1,0 +1,4 @@
+ID -> 1, Name -> Aman Kumar, Salary -> 400000
+ID -> 2, Name -> Bhuwan Singh, Salary -> 600000
+ID -> 3, Name -> Chaitanya Sahu, Salary -> 500000
+ID -> 4, Name -> Deepesh Pradhan, Salary -> 800000
